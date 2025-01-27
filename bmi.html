@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <form id="bmiForm">
+            <input type="number" id="weight" placeholder="Enter your weight (kg)" required>
+            <input type="number" id="height" placeholder="Enter your height (m)" required>
+            <button type="submit">Calculate BMI</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('bmiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value);
+            var bmi = weight / (height * height);
+            var resultText = '';
+
+            if (isNaN(bmi) || weight <= 0 || height <= 0) {
+                resultText = 'Please enter valid numbers for weight and height.';
+            } else if (bmi < 18.5) {
+                resultText = 'Your BMI is ' + bmi.toFixed(2) + ' (Underweight)';
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                resultText = 'Your BMI is ' + bmi.toFixed(2) + ' (Normal weight)';
+            } else if (bmi >= 25 && bmi < 29.9) {
+                resultText = 'Your BMI is ' + bmi.toFixed(2) + ' (Overweight)';
+            } else {
+                resultText = 'Your BMI is ' + bmi.toFixed(2) + ' (Obesity)';
+            }
+
+            document.getElementById('result').innerText = resultText;
+        });
+    </script>
+</body>
+</html>
