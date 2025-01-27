@@ -57,6 +57,7 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
+            margin: 5px;
         }
 
         .bmi-calculator button:hover {
@@ -84,6 +85,7 @@
         <input type="number" id="height" placeholder="Enter your height in cm">
 
         <button onclick="calculateBMI()">Calculate BMI</button>
+        <button onclick="resetFields()">Reset</button>
 
         <div class="bmi-result" id="bmiResult"></div>
     </div>
@@ -112,6 +114,12 @@
             }
 
             document.getElementById('bmiResult').innerHTML = `Your BMI is <span>${bmi}</span> (<span>${category}</span>).`;
+        }
+
+        function resetFields() {
+            document.getElementById('weight').value = '';
+            document.getElementById('height').value = '';
+            document.getElementById('bmiResult').innerHTML = '';
         }
     </script>
 </body>
